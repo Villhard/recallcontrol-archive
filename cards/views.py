@@ -1,4 +1,10 @@
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import (
+    TemplateView,
+    ListView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 from django.shortcuts import redirect
 from cards.models import Card
 from cards.forms import CardForm
