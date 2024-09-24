@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Список карточек{% endblock %}
+
+{% block content %}
+<h1>Список карточек</h1>
+{% for card in cards %}
+{% include 'cards/includes/card.html' %}
+{% endfor %}
+<form action="{% url 'cards:card_create' %}" method="get" style="margin-top: 16px;">
+    <button type="submit">Создать карточку</button>
+</form>
+{% endblock %}
