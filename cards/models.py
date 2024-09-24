@@ -6,6 +6,7 @@ class Card(models.Model):
     back = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    recalled_at = models.DateTimeField()
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
