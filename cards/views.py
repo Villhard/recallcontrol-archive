@@ -1,3 +1,4 @@
+from datetime import timedelta
 from django.views.generic import (
     TemplateView,
     ListView,
@@ -5,7 +6,9 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-from django.shortcuts import redirect
+from django.views import View
+from django.shortcuts import redirect, render
+from django.utils import timezone
 from cards.models import Card
 from cards.forms import CardForm
 
@@ -48,3 +51,28 @@ class CardDeleteView(DeleteView):
         self.object = self.get_object()
         self.object.delete()
         return redirect(self.success_url)
+
+
+class CardStudyView(View):
+    @staticmethod
+    def _get_card():
+        one_hour_ago = timezone.now() - timedelta(minutes=1)
+        return (
+            Card.objects.filter(is_active=True, updated_at__lt=one_hour_ago)
+            .order_by("recalled_at")
+            .first()
+        )
+
+    def get(self, request):
+        card = self._get_card()
+        return render(request, "cards/card_study.html", {"card": card})
+
+    def post(self, request):
+        card = self._get_card()
+        knowledge_status = request.POST.get("knowledge_status")
+        if knowledge_status == "known":
+            card.recalled_at = timezone.now()
+            card.save()
+        else:
+            card.save()
+        return redirect("cards:card_study")

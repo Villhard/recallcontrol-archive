@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Вспомним{% endblock %}
+
+{% block content %}
+{% if card %}
+<h4>{{ card.front }}</h4>
+<form action="{% url 'cards:card_study' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" name="knowledge_status" value="known">Знаю</button>
+    <button type="submit" name="knowledge_status" value="unknown">Не знаю</button>
+</form>
+{% else %}
+<p>Карточек для повторения нет</p>
+{% endif %}
+{% endblock %}
