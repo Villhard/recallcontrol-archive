@@ -54,21 +54,17 @@ class CardDeleteView(DeleteView):
 
 
 class CardStudyView(View):
-    @staticmethod
-    def _get_card():
+    def get(self, request):
         one_hour_ago = timezone.now() - timedelta(minutes=1)
-        return (
+        card = (
             Card.objects.filter(is_active=True, updated_at__lt=one_hour_ago)
             .order_by("recalled_at")
             .first()
         )
-
-    def get(self, request):
-        card = self._get_card()
         return render(request, "cards/card_study.html", {"card": card})
 
     def post(self, request):
-        card = self._get_card()
+        card = Card.objects.get(pk=request.POST.get("card_id"))
         knowledge_status = request.POST.get("knowledge_status")
         if knowledge_status == "known":
             card.recalled_at = timezone.now()
