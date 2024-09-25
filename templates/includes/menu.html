@@ -1,13 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'cards:index' %}">Главная</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'cards:card_list' %}">Список карточек</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'cards:card_study' %}">Повторить карточки</a>
-        </li>
-    </ul>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Cards</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}" aria-current="page" href="{% url 'cards:index' %}">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'card_list' %}active{% endif %}" href="{% url 'cards:card_list' %}">Список карточек</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'card_study' %}active{% endif %}" href="{% url 'cards:card_study' %}">Повторить карточки</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
