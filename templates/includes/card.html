@@ -1,15 +1,15 @@
-<div class="card"
-    style="border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+<div class="card mb-3 shadow-sm {% if card.is_active %}bg-success text-white{% else %}bg-danger text-white{% endif %}">
     <div class="card-body">
         <h4 class="card-title">{{ card.front }}</h4>
         <h4 class="card-text">{{ card.back }}</h4>
-        <h4>{% if card.is_active %}🟢{% else %}🔴{% endif %}</h4>
-        <form action="{% url 'cards:card_delete' card.id %}" method="post" style="margin-top: 16px;">
-            {% csrf_token %}
-            <button type="submit">Удалить</button>
-        </form>
-        <form action="{% url 'cards:card_update' card.id %}" method="get" style="margin-top: 16px;">
-            <button type="submit">Изменить</button>
-        </form>
+        <div class="d-flex justify-content-between mt-3">
+            <form action="{% url 'cards:card_update' card.id %}" method="get">
+                <button type="submit" class="btn btn-primary">Изменить</button>
+            </form>
+            <form action="{% url 'cards:card_delete' card.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-light">Удалить</button>
+            </form>
+        </div>
     </div>
 </div>
