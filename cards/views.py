@@ -1,4 +1,3 @@
-from datetime import timedelta
 from django.views.generic import (
     TemplateView,
     ListView,
@@ -55,12 +54,7 @@ class CardDeleteView(DeleteView):
 
 class CardStudyView(View):
     def get(self, request):
-        one_hour_ago = timezone.now() - timedelta(minutes=1)
-        card = (
-            Card.objects.filter(is_active=True, updated_at__lt=one_hour_ago)
-            .order_by("recalled_at")
-            .first()
-        )
+        card = Card.study_objects.first()
         return render(request, "cards/card_study.html", {"card": card})
 
     def post(self, request):
