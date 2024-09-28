@@ -11,6 +11,9 @@ class StudyCard(models.Manager):
             super().get_queryset().filter(is_active=True, updated_at__lt=one_hour_ago)
         )
 
+        class Meta:
+            ordering = ["recalled_at"]
+
 
 class Card(models.Model):
     front = models.TextField()
