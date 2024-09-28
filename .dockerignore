@@ -1,7 +1,7 @@
 *.sqlite3
 *.pyc
-
 __pycache__/
 .ruff_cache/
 .venv/
-migrations/
+!migrations/__init__.py
+migrations/*.py
