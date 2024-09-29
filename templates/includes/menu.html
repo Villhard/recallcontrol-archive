@@ -16,6 +16,20 @@
                 <li class="nav-item">
                     <a class="nav-link {% if request.resolver_match.url_name == 'card_study' %}active{% endif %}" href="{% url 'cards:card_study' %}">Повторить карточки ({% card_for_studying %})</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %}" href="{% url 'users:register' %}">Регистрация</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <span class="navbar-text">Привет, {{ user.username }}!</span>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <span class="navbar-text">Привет, аноним!</span>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
