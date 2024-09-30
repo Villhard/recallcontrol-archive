@@ -10,8 +10,8 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = "users.CustomUser"
 
-LOGIN_REDIRECT_URL = "index"
-LOGOUT_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = "cards:index"
+LOGOUT_REDIRECT_URL = "cards:index"
 
 INSTALLED_APPS = [
     "django.contrib.admin",
