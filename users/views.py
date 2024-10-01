@@ -8,7 +8,7 @@ from users.forms import UserRegisterForm
 class RegisterView(View):
     def get(self, request):
         form = UserRegisterForm()
-        return render(request, "register/register.html", {"form": form})
+        return render(request, "registration/register.html", {"form": form})
 
     def post(self, request):
         form = UserRegisterForm(request.POST)
