@@ -1,7 +1,10 @@
 from datetime import timedelta
 
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
+
+User = get_user_model()
 
 
 class StudyCard(models.Manager):
@@ -11,8 +14,8 @@ class StudyCard(models.Manager):
             super().get_queryset().filter(is_active=True, updated_at__lt=one_hour_ago)
         )
 
-        class Meta:
-            ordering = ["recalled_at"]
+    class Meta:
+        ordering = ["recalled_at"]
 
 
 class Card(models.Model):
@@ -22,6 +25,7 @@ class Card(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     recalled_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="cards")
 
     objects = models.Manager()
     study_objects = StudyCard()
