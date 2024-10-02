@@ -13,6 +13,8 @@ AUTH_USER_MODEL = "users.CustomUser"
 LOGIN_REDIRECT_URL = "cards:index"
 LOGOUT_REDIRECT_URL = "cards:index"
 
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
