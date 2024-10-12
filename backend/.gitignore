@@ -73,3 +73,6 @@ dmypy.json
 
 # Ruff
 .ruff_cache/
+
+# Mac
+.DS_Store
