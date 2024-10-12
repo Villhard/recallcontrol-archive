@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Вспомним{% endblock %}
+{% block content %}
+{% if card %}
+<div class="card text-center">
+  <div class="card-body">
+    <h4 class="card-title">{{ card.front }}</h4>
+    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#cardBack" aria-expanded="false"
+      aria-controls="cardBack">
+      ⬇️
+    </button>
+    <div class="collapse mt-3" id="cardBack">
+      <div class="card card-body">
+        {{ card.back }}
+      </div>
+    </div>
+    <form action="{% url 'cards:card_study' %}" method="post" class="mt-3">
+      {% csrf_token %}
+      <input type="hidden" name="card_id" value="{{ card.id }}">
+      <button type="submit" class="btn btn-success" name="knowledge_status" value="known">Помню</button>
+      <button type="submit" class="btn btn-danger" name="knowledge_status" value="unknown">Не помню</button>
+    </form>
+  </div>
+</div>
+{% else %}
+<p class="text-center">Карточек для повторения нет</p>
+{% endif %}
+{% endblock %}
