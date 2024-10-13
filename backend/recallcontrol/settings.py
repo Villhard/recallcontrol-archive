@@ -6,7 +6,7 @@ SECRET_KEY = "django-insecure-92l3u78mbfqu4836++*zyg_wq_gip$(g^9v#ev2!t&on^d$a@j
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = "users.CustomUser"
 
@@ -88,5 +88,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
