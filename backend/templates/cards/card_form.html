@@ -3,8 +3,10 @@
 {% block content %}
 <h2 class="text-center">{{ title }}</h2>
 <form method="post" action="" class="mx-auto" style="max-width: 600px;">
-  {% csrf_token %}
-  {{ form.as_p }}
+  <table>
+    {% csrf_token %}
+    {{ form.as_table }}
+  </table>
   <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>
 {% endblock %}
