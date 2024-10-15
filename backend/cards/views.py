@@ -33,7 +33,7 @@ class CardCreateView(LoginRequiredMixin, CreateView):
     form_class = CardForm
     template_name = "cards/card_form.html"
     success_url = "/cards/"
-    extra_context = {"title": "Create Card"}
+    extra_context = {"title": "Создать карточку"}
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
@@ -45,7 +45,7 @@ class CardUpdateView(LoginRequiredMixin, UpdateView):
     form_class = CardForm
     template_name = "cards/card_form.html"
     success_url = "/cards/"
-    extra_context = {"title": "Update Card"}
+    extra_context = {"title": "Изменить карточку"}
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
