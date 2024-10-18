@@ -10,7 +10,7 @@ class RegisterView(View):
         if request.user.is_authenticated:
             return redirect("cards:index")
         return super().dispatch(request, *args, **kwargs)
-    
+
     def get(self, request):
         form = UserRegisterForm()
         return render(request, "registration/register.html", {"form": form})
