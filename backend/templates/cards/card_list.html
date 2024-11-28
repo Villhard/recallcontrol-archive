@@ -2,11 +2,13 @@
 {% block title %}Список карточек{% endblock %}
 {% block content %}
 <h1 class="text-center">Список карточек</h1>
-<div class="container">
+<div class="container card-deck">
   <div class="row">
     {% for card in cards %}
     <div class="col-md-4">
-      {% include 'includes/card.html' %}
+      <div class="card">
+        {% include 'includes/card.html' %}
+      </div>
     </div>
     {% endfor %}
   </div>
